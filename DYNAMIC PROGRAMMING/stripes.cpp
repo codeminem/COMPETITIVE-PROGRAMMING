@@ -21,23 +21,43 @@ bool revsort(int a,int b){return a>b;}
                                                 DONT CHANGE ANYTHING ABOVE THIS LINE!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 const int mod= 1e9+7;
-int minPalPartition(string str){
-    int n=str.length();
-    //create C[i][j] minimum no. of cuts to create palindromes i..j
-    //P[i][j] true if str[i..j] is palindrome
-    //C[i][j]=0 if P[i][j] is true
-    int C[n][n];
-    bool P[n][n];
-    //base case
-    for(int i=0;i<n;i++){
-        P[i][i]=true;
-        C[i][i]=0;
-    }
-}
+
 signed main()
 { 
     fastio();
+    mc;
+    while(t--){
+        bool satisfy1=false;
+        int R_c;
+        int B_c;
 
+        char A[8][8];
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                cin>>A[i][j];
+            }
+        }
+        //row_check
+        for(int i=0;i<8;i++){
+            R_c=0;
+            for(int j=0;j<8;j++){
+                if(A[i][j]=='R'){
+                    R_c++;
+                }
+            }
+            if(R_c==8){
+                satisfy1=true;
+                break;
+            }
+        }
 
+        if(satisfy1==true){
+            cout<<'R'<<endl;
+        }
+        else{
+            cout<<'B'<<endl;
+        }
+
+    }
     return 0;
 }

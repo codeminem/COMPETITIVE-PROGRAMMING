@@ -3,6 +3,7 @@
 #include<algorithm>
 #include<vector>
 #define vi vector<int>
+#define vil vector<long long>
 #define vvi vector<vector<int>>
 #define pii pair<int, int>
 #define vpii vector<pair<int, int>> 
@@ -21,23 +22,39 @@ bool revsort(int a,int b){return a>b;}
                                                 DONT CHANGE ANYTHING ABOVE THIS LINE!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 const int mod= 1e9+7;
-int minPalPartition(string str){
-    int n=str.length();
-    //create C[i][j] minimum no. of cuts to create palindromes i..j
-    //P[i][j] true if str[i..j] is palindrome
-    //C[i][j]=0 if P[i][j] is true
-    int C[n][n];
-    bool P[n][n];
-    //base case
+// make the prefix maximums of the array: let 𝑚𝑖=max(𝑎1,…,𝑎𝑖). Then we need to find the largest 𝑖 such that 𝑚𝑖≤𝑘,
+
+void solve(){
+    int n,q;
+    cin>>n>>q;
+    vil pref;
+    pref.push_back(0);
+    vector<int> prefmax;
     for(int i=0;i<n;i++){
-        P[i][i]=true;
-        C[i][i]=0;
+        int x;
+        cin>>x;
+        pref.push_back(pref.back()+x);
+        if(i==0){
+            prefmax.push_back(x);
+        }
+        else{
+            prefmax.push_back(max(prefmax.back(),x));
+        }
     }
+    for(int i=0;i<q;i++){
+        int k;cin>>k;
+        int ind= upper_bound(prefmax.begin(),prefmax.end(),k)-prefmax.begin();
+        cout<<pref[ind]<<" ";
+    }
+    cout<<endl;
+
 }
 signed main()
 { 
     fastio();
-
-
+    mc;
+    while(t--){
+        solve();
+    }
     return 0;
 }

@@ -2,6 +2,8 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<numeric>
+#include <climits>
 #define vi vector<int>
 #define vvi vector<vector<int>>
 #define pii pair<int, int>
@@ -21,23 +23,35 @@ bool revsort(int a,int b){return a>b;}
                                                 DONT CHANGE ANYTHING ABOVE THIS LINE!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 const int mod= 1e9+7;
-int minPalPartition(string str){
-    int n=str.length();
-    //create C[i][j] minimum no. of cuts to create palindromes i..j
-    //P[i][j] true if str[i..j] is palindrome
-    //C[i][j]=0 if P[i][j] is true
-    int C[n][n];
-    bool P[n][n];
-    //base case
-    for(int i=0;i<n;i++){
-        P[i][i]=true;
-        C[i][i]=0;
+
+
+void solve(){
+    int n,k,j;
+    cin>>n>>k;
+    int H[n];
+    rep(i,n){
+        cin>>H[i];
     }
+    vector<ll>dp(n,mod);
+    //base case
+    dp[0]=0;
+    dp[1]=abs(H[1]-H[0]);
+
+    //recursive case
+    for(int i=0;i<n;i++){
+        for(j=i+1;j<=i+k;j++){
+            if(j<n){
+                dp[j]=min(dp[j],dp[i]+abs(H[j]-H[i]));
+            }
+        }
+    }
+    cout<<dp[n-1]<<endl;
+    
 }
+
 signed main()
 { 
     fastio();
-
-
+    solve();
     return 0;
 }

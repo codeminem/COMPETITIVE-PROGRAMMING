@@ -21,23 +21,45 @@ bool revsort(int a,int b){return a>b;}
                                                 DONT CHANGE ANYTHING ABOVE THIS LINE!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 const int mod= 1e9+7;
-int minPalPartition(string str){
-    int n=str.length();
-    //create C[i][j] minimum no. of cuts to create palindromes i..j
-    //P[i][j] true if str[i..j] is palindrome
-    //C[i][j]=0 if P[i][j] is true
-    int C[n][n];
-    bool P[n][n];
-    //base case
-    for(int i=0;i<n;i++){
-        P[i][i]=true;
-        C[i][i]=0;
+void solve(){
+    int n;cin>>n;
+    string s;cin>>s;
+    vector<ll>a(n);
+    for(auto& e:a) cin >> e;
+    int element_checker=-1;
+    for(int i=n-1;i>=0;i--){
+        if(s[i]== 1){
+            element_checker=i;
+            break;
+        }
     }
+    if(element_checker== -1){
+        cout<<0<<endl;
+        return;
+    }
+    ll ans=0;
+    vector<vector<ll> >  dp(n,vector<ll>(2,0));
+    if(s[0]==1) dp[0][1]=a[0];
+    for(int i=1;i<n;i++){
+        if(s[i]==0){
+            dp[i][0]=max (dp[i-1][0],dp[i-1][1]);
+        }
+        else{
+            dp[i][0]=dp[i-1][0]+a[i-1];
+            dp[i][1]=max(dp[i-1][0],dp[i-1][1])+a[i];
+        }
+    }
+    cout<<max(dp[n-1][0],dp[n-1][1]);
+
 }
+
+
 signed main()
 { 
     fastio();
-
-
+    int t;cin>>t;
+    while(t--){
+       solve();
+    }
     return 0;
 }
