@@ -20,32 +20,43 @@ bool revsort(int a,int b){return a>b;}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                                 DONT CHANGE ANYTHING ABOVE THIS LINE!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-const int mod= 1e5+7;
-int n;
-int visited[2][2*100007];
-int a[2][2*100007];
-int q;
-char t;
-void dfs()
-
-
-
+const int mod= 1e9+7;
 
 signed main()
 { 
-    fastio();
-    mc;
-    while(t--){
-        
-        
-
+    fastio();int n,k,sum2=0;
+    cin>>n>>k;
+    int A[n];
+    vector<int>B;
+    vector<int>C;
+    rep(i,n){
+        cin>>A[i];
     }
-    // 7
-    // 2323216
-    // 1615124
 
-    //3<->4<->5<->6
-    //1<->2
+    int sum;
+    rep(i,k){
+        sum+=A[i];
+    }
+    B.push_back(sum);
+    for(int i=0;i<n;i++){
+        if(i+k<n){
+            sum+=(A[i+k]-A[i]);
+            B.push_back(sum);
+        }
+        
+    }
+    rep(i,B.size()){
+        C.push_back(B[i]);
+    }
+    
+    sort(C.begin(),C.end());
+    int x=C[0];
+    for(int i=0;i<n;i++){
+        if(B[i]==x){
+            cout<<i+1;
+            break;
+        }
+    }
 
     return 0;
 }

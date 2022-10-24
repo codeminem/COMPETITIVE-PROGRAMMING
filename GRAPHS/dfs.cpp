@@ -1,6 +1,7 @@
 //जय हनुमान जी!
 #include<iostream>
 #include<algorithm>
+#include<map>
 #include<vector>
 #define vi vector<int>
 #define vvi vector<vector<int>>
@@ -20,32 +21,16 @@ bool revsort(int a,int b){return a>b;}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                                 DONT CHANGE ANYTHING ABOVE THIS LINE!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-const int mod= 1e5+7;
-int n;
-int visited[2][2*100007];
-int a[2][2*100007];
-int q;
-char t;
-void dfs()
-
-
-
+const int mod= 1e9+7;
+class graph{
+public:
+    map<int,bool> visited;
+    map<int, list<int>> adj;
+}
 
 signed main()
 { 
     fastio();
-    mc;
-    while(t--){
-        
-        
-
-    }
-    // 7
-    // 2323216
-    // 1615124
-
-    //3<->4<->5<->6
-    //1<->2
 
     return 0;
 }

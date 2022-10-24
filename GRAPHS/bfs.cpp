@@ -1,6 +1,7 @@
 //जय हनुमान जी!
 #include<iostream>
 #include<algorithm>
+#include<queue>
 #include<vector>
 #define vi vector<int>
 #define vvi vector<vector<int>>
@@ -20,32 +21,41 @@ bool revsort(int a,int b){return a>b;}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                                 DONT CHANGE ANYTHING ABOVE THIS LINE!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-const int mod= 1e5+7;
-int n;
-int visited[2][2*100007];
-int a[2][2*100007];
-int q;
-char t;
-void dfs()
+const int mod= 1e9+7;
+//BFS for both disconnected and connected graphs
+//V-vertcies.adj[]->adjacency list..bfs_travel->as name suggests
+vector<int> bfsOfGraph(int V,vector<int> adj[]){
+    vector<int> bfs_traversal;
+    vector<bool>vis (V,false);
+    for(int i=0;i<V;i++){
+        if(!vis[i]){
+            queue<int> q;
+            vis[i]=true;
+            q.push(i);
+        
+            //bfs starting from ith node
+            while(!q.empty()){
+                int g_node= q.front();
+                q.pop();
+                bfs_traversal.push_back(g_node);
+                for(auto it:adj[g_node]){
+                    if(!vis[it]){
+                        vis[it]=true;
+                        q.push(it);
+                    }
+                }
 
 
+            }
+        }
 
+    }
+
+}
 
 signed main()
 { 
     fastio();
-    mc;
-    while(t--){
-        
-        
-
-    }
-    // 7
-    // 2323216
-    // 1615124
-
-    //3<->4<->5<->6
-    //1<->2
 
     return 0;
 }
